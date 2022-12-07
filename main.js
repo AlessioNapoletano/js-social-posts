@@ -132,28 +132,40 @@ posts.forEach(image => {
     const postFooterElement = document.createElement("div");
     postFooterElement.classList.add("post__footer");
     postElement.append(postFooterElement);
+
+    //LIKE PARENT
+    const likeELementParent = document.createElement("div");
+    likeELementParent.classList.add("likes", "js-likes");
+    postFooterElement.append(likeELementParent);
+
+    //PARENT OF THE BUTTON LIKE
+    const likesButtonElement = document.createElement("div");
+    likesButtonElement.classList.add("likes__cta");
+    likeELementParent.append(likesButtonElement);
+
+    //a ELEMENT
+    const linkButtonLike = document.createElement("a");
+    linkButtonLike.classList.add("like-button", "js-like-button");
+    linkButtonLike.href = "#";
+    likesButtonElement.append(linkButtonLike);
+
+    //icon ELEMENT  
+    const iconLikeButton = document.createElement("i");
+    iconLikeButton.classList.add("like-button__icon", "fas", "fa-thumbs-up");
+    iconLikeButton.ariaHidden = "true";
+    linkButtonLike.append(iconLikeButton);
+
+    //span Element
+    const spanLikeElement = document.createElement("span");
+    spanLikeElement.classList.add("like-button__label");
+    spanLikeElement.innerHTML = "Mi Piace";
+    linkButtonLike.append(spanLikeElement);
+
+
+    //LIKES COUNTER INSERIRE NEL postFooterElement
+    const likeCounter = document.createElement("div");
+    likeCounter.classList.add("likes__counter");
+    likeCounter.innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${image.likes}</b> persone`;
+    likeELementParent.append(likeCounter);
 });
-
-
-
-//             <div class="post__text">Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.</div>
-//             <div class="post__image">
-//                 <img src="https://unsplash.it/600/300?image=171" alt="">
-//             </div>
-
-//             <div class="post__footer">
-//                 <div class="likes js-likes">
-//                     <div class="likes__cta">
-//                         <a class="like-button  js-like-button" href="#" data-postid="1">
-//                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-//                             <span class="like-button__label">Mi Piace</span>
-//                         </a>
-//                     </div>
-//                     <div class="likes__counter">
-//                         Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-
 
