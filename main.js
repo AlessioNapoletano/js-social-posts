@@ -149,6 +149,7 @@ posts.forEach(image => {
     linkButtonLike.href = "#";
     likesButtonElement.append(linkButtonLike);
 
+
     //icon ELEMENT  
     const iconLikeButton = document.createElement("i");
     iconLikeButton.classList.add("like-button__icon", "fas", "fa-thumbs-up");
@@ -161,11 +162,33 @@ posts.forEach(image => {
     spanLikeElement.innerHTML = "Mi Piace";
     linkButtonLike.append(spanLikeElement);
 
+    let counter = 0;
+    let like = image.likes;
+    
+    
+    linkButtonLike.addEventListener("click", function(){
+        if (counter === 0) {
+            counter++;
+        } else {
+            counter = 0;
+        }
+
+        linkButtonLike.classList.toggle("color-red");    
+        like = image.likes + counter;
+        likeCounter.innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${like}</b> persone`;
+    });
+    console.log(like);
+
+    
 
     //LIKES COUNTER INSERIRE NEL postFooterElement
     const likeCounter = document.createElement("div");
     likeCounter.classList.add("likes__counter");
-    likeCounter.innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${image.likes}</b> persone`;
+    likeCounter.innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${like}</b> persone`;
     likeELementParent.append(likeCounter);
+
+
+
+    
 });
 

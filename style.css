@@ -102,6 +102,9 @@ h1 {
     justify-content: space-around;
     align-items: center;
 }
+a.color-red{
+    color: red;
+}
 
 .like-button {
     display: inline-block;
