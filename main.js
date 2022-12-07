@@ -81,30 +81,54 @@ const postMetaIconElement = document.createElement("div");
 postMetaIconElement.classList.add("post-meta__icon");
 postMetaElement.append(postMetaIconElement);
 
-//CREO l'imageElement, AGGIUNGO la classe profile-pic, MODIFICO le proprietà src e alt
+//CREO l'imageElement, AGGIUNGO la classe profile-pic, MODIFICO le proprietà src e alt, INSERISCO l'imageElement in postMetaIconElement
 const imageElement = document.createElement("img");
 imageElement.classList.add("profile-pic");
 imageElement.src= image.author.image;
 imageElement.alt= image.author.name;
 postMetaIconElement.append(imageElement);
 
+//          META DATA ELEMENT -- > SALVIAMO LE INFORMAZIONI DELL'AUTORE E DELLA DATA DI CREAZIONE DEL POST
+//CREO il metaDataELement, AGGIUNGO la classe post-meta__data, INSERISCO nel postMetaElement
+const metaDataELement = document.createElement("div");
+metaDataELement.classList.add("post-meta__data");
+postMetaElement.append(metaDataELement);
 
+//CREO il authorElement, AGGIUNGO la classe post-meta__author, MODIFICO l'innerHTML, INSERISCO il authorElement nel metaDataELement
+const authorElement = document.createElement("div");
+authorElement.classList.add("post-meta__author");
+authorElement.innerHTML = image.author.name;
+metaDataELement.append(authorElement);
+
+//CREO il authorElement, AGGIUNGO la classe post-meta__author, MODIFICO l'innerHTML, INSERISCO il authorElement nel postMetaElement
+const timeElement = document.createElement("div");
+timeElement.classList.add("post-meta__time");
+timeElement.innerHTML = image.created;
+metaDataELement.append(timeElement);
+
+
+
+// PARTE DEL CONTENUTO VA APPESO NEL DIVCONTAINER
 });
 
 
 // post di esempio/template, da togliere/commentare e generare da JS
 //         <div class="post"> ok
 //             <div class="post__header"> ok 
-//                 <div class="post-meta">        ok            
-//                     <div class="post-meta__icon">
-//                         <img class="profile-pic" src="https://unsplash.it/300/300?image=15" alt="Phil Mangione">                    
-//                     </div>
+//                 <div class="post-meta">  
+      ok            
+//                     <div class="post-meta__icon"> ok 
+//                         <img class="profile-pic" src="https://unsplash.it/300/300?image=15" alt="Phil Mangione">  ok                  
+//                     </div> fine div image
+
 //                     <div class="post-meta__data">
 //                         <div class="post-meta__author">Phil Mangione</div>
 //                         <div class="post-meta__time">4 mesi fa</div>
-//                     </div>                    
+//                     </div>
+
 //                 </div>
 //             </div>
+
 //             <div class="post__text">Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.</div>
 //             <div class="post__image">
 //                 <img src="https://unsplash.it/600/300?image=171" alt="">
