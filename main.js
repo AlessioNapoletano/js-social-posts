@@ -108,7 +108,12 @@ metaDataELement.append(timeElement);
 
 
 
-// PARTE DEL CONTENUTO VA APPESO NEL DIVCONTAINER
+// PARTE DEL CONTENUTO VA APPESO NEL post content
+//CREO il conenuto del post
+const postContent = document.createElement("div");
+postContent.classList.add("post__text");
+postContent.innerHTML = image.content;
+postElement.append(postContent);
 });
 
 
