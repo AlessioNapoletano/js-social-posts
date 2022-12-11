@@ -59,6 +59,8 @@ const posts = [
 //PRENDO il div container presente nell'index
 const containerElement = document.getElementById("container");
 
+let postLike = [];
+
 posts.forEach(image => {
     //CREO il postElement, AGGIUNGO la classe post, INSERISCO il postElement nel containerElement
     const postElement = document.createElement("div");
@@ -84,8 +86,16 @@ posts.forEach(image => {
     //CREO l'imageElement, AGGIUNGO la classe profile-pic, MODIFICO le proprietà src e alt, INSERISCO l'imageElement in postMetaIconElement
     const imageElement = document.createElement("img");
     imageElement.classList.add("profile-pic");
-    imageElement.src = image.author.image;
-    imageElement.alt = image.author.name;
+    if (image.author.image != null) {
+        imageElement.src = image.author.image;
+        imageElement.alt = image.author.name;
+    } else {
+        let name = image.author.name;
+        const newName = name.split(" ");
+
+        imageElement.alt = newName[0].substring(0, 1) + newName[1].substring(0, 1);
+    }
+
     postMetaIconElement.append(imageElement);
 
     //          META DATA ELEMENT -- > SALVIAMO LE INFORMAZIONI DELL'AUTORE E DELLA DATA DI CREAZIONE DEL POST
@@ -103,7 +113,7 @@ posts.forEach(image => {
     //CREO il authorElement, AGGIUNGO la classe post-meta__author, MODIFICO l'innerHTML, INSERISCO il authorElement nel postMetaElement
     const timeElement = document.createElement("div");
     timeElement.classList.add("post-meta__time");
-    timeElement.innerHTML = image.created;
+    timeElement.innerHTML = image.created
     metaDataELement.append(timeElement);
 
 
@@ -146,7 +156,7 @@ posts.forEach(image => {
     //a ELEMENT
     const linkButtonLike = document.createElement("a");
     linkButtonLike.classList.add("like-button", "js-like-button");
-    linkButtonLike.href = "#";
+    linkButtonLike.href = "#!";
     likesButtonElement.append(linkButtonLike);
 
 
@@ -164,22 +174,25 @@ posts.forEach(image => {
 
     let counter = 0;
     let like = image.likes;
-    
-    
-    linkButtonLike.addEventListener("click", function(){
+
+
+
+    linkButtonLike.addEventListener("click", function () {
         if (counter === 0) {
             counter++;
+            postLike.push(image.id);
         } else {
             counter = 0;
         }
 
-        linkButtonLike.classList.toggle("color-red");    
+        linkButtonLike.classList.toggle("color-red");
         like = image.likes + counter;
         likeCounter.innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${like}</b> persone`;
     });
-    console.log(like);
 
-    
+
+
+
 
     //LIKES COUNTER INSERIRE NEL postFooterElement
     const likeCounter = document.createElement("div");
@@ -189,6 +202,21 @@ posts.forEach(image => {
 
 
 
-    
+
 });
+
+//STAMPO array vuoto
+console.log("Post a cui hai messo Like: " + postLike);
+
+//RIEMPIO array con ID dei post a cui l'utente ha messo like
+setTimeout(postLikeOutput, 5000);
+
+function postLikeOutput() {
+    if (postLike.length != 0) {
+        console.log("Post a cui hai messo Like per ID: " + postLike);
+    } else {
+        console.log("Non hai messo Like al momento");
+    }
+
+}
 
