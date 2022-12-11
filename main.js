@@ -61,7 +61,7 @@ const containerElement = document.getElementById("container");
 
 let postLike = [];
 
-posts.forEach(image => {
+posts.forEach((image, index) => {
     //CREO il postElement, AGGIUNGO la classe post, INSERISCO il postElement nel containerElement
     const postElement = document.createElement("div");
     postElement.classList.add("post");
@@ -89,16 +89,18 @@ posts.forEach(image => {
     if (image.author.image != null) {
         imageElement.src = image.author.image;
         imageElement.alt = image.author.name;
+        postMetaIconElement.append(imageElement);
     } else {
         let name = image.author.name;
         const newName = name.split(" ");
-
-        imageElement.alt = newName[0].substring(0, 1) + newName[1].substring(0, 1);
+        const newOutput = document.createElement("span");
+        newOutput.classList.add("author-image-none");
+        newOutput.innerHTML = newName[0].substring(0, 1) + newName[1].substring(0, 1);
+        postMetaIconElement.append(newOutput);
     }
 
-    postMetaIconElement.append(imageElement);
 
-    //          META DATA ELEMENT -- > SALVIAMO LE INFORMAZIONI DELL'AUTORE E DELLA DATA DI CREAZIONE DEL POST
+    //META DATA ELEMENT -- > SALVIAMO LE INFORMAZIONI DELL'AUTORE E DELLA DATA DI CREAZIONE DEL POST
     //CREO il metaDataELement, AGGIUNGO la classe post-meta__data, INSERISCO nel postMetaElement
     const metaDataELement = document.createElement("div");
     metaDataELement.classList.add("post-meta__data");
@@ -187,6 +189,9 @@ posts.forEach(image => {
             postLike.push(image.id);
         } else {
             counter = 0;
+            //Toglie dall'array postLike, l'id dell'immagine a cui è stato rimosso il like
+            postLike.splice(index, 1);
+        
         }
 
         linkButtonLike.classList.toggle("color-red");
@@ -212,6 +217,8 @@ posts.forEach(image => {
 //STAMPO array vuoto
 console.log("Post a cui hai messo Like: " + postLike);
 
+
+//Per utilizzare l'array in cui abbiamo salvato gli ID dei post a cui abbiamo messo like
 //RIEMPIO array con ID dei post a cui l'utente ha messo like
 setTimeout(postLikeOutput, 5000);
 
