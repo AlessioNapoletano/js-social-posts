@@ -111,9 +111,13 @@ posts.forEach(image => {
     metaDataELement.append(authorElement);
 
     //CREO il authorElement, AGGIUNGO la classe post-meta__author, MODIFICO l'innerHTML, INSERISCO il authorElement nel postMetaElement
+    let currentFormatDate = image.created;
+    let newFormatDate = currentFormatDate.split("-");
+    console.log(newFormatDate);
+
     const timeElement = document.createElement("div");
     timeElement.classList.add("post-meta__time");
-    timeElement.innerHTML = image.created
+    timeElement.innerHTML = `${newFormatDate[2]}-${newFormatDate[1]}-${newFormatDate[0]}`
     metaDataELement.append(timeElement);
 
 
